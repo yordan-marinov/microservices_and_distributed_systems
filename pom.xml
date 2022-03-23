@@ -6,7 +6,11 @@
 
   <groupId>com.yordanm</groupId>
   <artifactId>yordanlearnservices</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
+  <modules>
+    <module>customerService</module>
+  </modules>
 
   <name>yordanlearnservices</name>
   <!-- FIXME change it to the project's website -->
