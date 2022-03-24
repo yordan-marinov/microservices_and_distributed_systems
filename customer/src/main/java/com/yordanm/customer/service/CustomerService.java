@@ -1,5 +1,6 @@
 package com.yordanm.customer.service;
 
+import com.yordanm.customer.exceptions.FraudCustomerException;
 import com.yordanm.customer.models.Customer;
 import com.yordanm.customer.models.CustomerRegistrationRequest;
 import com.yordanm.customer.models.FraudCheckResponse;
@@ -27,7 +28,7 @@ public record CustomerService(CustomerRepository customerRepository,
 
         assert response != null;
         if (response.isFraudster()){
-            throw new RuntimeException("The customer is fraudster.");
+            throw new FraudCustomerException("The customer is fraudster.");
         }
 
 
