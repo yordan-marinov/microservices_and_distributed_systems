@@ -4,15 +4,15 @@ server:
 spring:
   application:
     name: fraud-svc
-    datasource:
-      password: password
-      url: jdbc:postgresql://localhost:5432/fraud-svc
-      username: d_user
-      jpa:
+  datasource:
+    password: password
+    url: jdbc:postgresql://localhost:5432/fraud-db
+    username: d_user
+    jpa:
+      hibernate:
+        ddl-auto: create-drop
+      properties:
         hibernate:
-          ddl-auto: create-drop
-        properties:
-          hibernate:
-            dialect: org.hibernate.dialect.PostgreSQLDialect
-            format_sql: true
-        show-sql: true
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+      show-sql: true
