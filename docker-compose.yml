@@ -1,12 +1,13 @@
-version: '3.3'
+version: "3.3"
 
 services:
   postgres:
-    container_name: postgres
-    image: postgres:latest
+    container_name: postgres_db
+    image: postgres
     environment:
-      POSTGRES_USER: username
+      POSTGRES_USER: d_user
       POSTGRES_PASSWORD: password
+      POSTGRES_DB: customer
       PGDATA: /data/postgres
     volumes:
       - postgres:/data/postgres
@@ -15,7 +16,6 @@ services:
     networks:
       - postgres
     restart: unless-stopped
-
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
