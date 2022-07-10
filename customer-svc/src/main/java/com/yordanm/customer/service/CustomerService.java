@@ -24,7 +24,8 @@ public class CustomerService {
 
         customerRepository.saveAndFlush(customer);
         FraudResponse response = restTemplate.getForObject(
-                "http://localhost:8990/api/v1/fraud-check/{customerId}",
+//                "http://localhost:8990/api/v1/fraud-check/{customerId}", This way is when is done without the eureka client
+                "http://FRAUD-SVC/api/v1/fraud-check/{customerId}", // Done with eureka client name instead of localhost:port
                 FraudResponse.class,
                 customer.getId()
         );
