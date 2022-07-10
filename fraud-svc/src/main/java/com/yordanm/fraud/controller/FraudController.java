@@ -1,6 +1,6 @@
 package com.yordanm.fraud.controller;
 
-import com.yordanm.fraud.model.FraudResponse;
+import com.yordanm.apiclientssvc.fraud.FraudResponse;
 import com.yordanm.fraud.service.FraudCheckService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
