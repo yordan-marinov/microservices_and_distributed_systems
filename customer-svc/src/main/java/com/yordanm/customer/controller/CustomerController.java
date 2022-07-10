@@ -1,6 +1,7 @@
 package com.yordanm.customer.controller;
 
 import com.yordanm.customer.model.Customer;
+import com.yordanm.customer.model.FraudResponse;
 import com.yordanm.customer.service.CustomerService;
 import com.yordanm.customer.model.CustomerRegistrationRequest;
 import lombok.extern.slf4j.Slf4j;
