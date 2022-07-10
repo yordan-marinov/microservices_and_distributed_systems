@@ -5,3 +5,12 @@ Connecting to pgAdmin:
   network: postgres
   username: postgres
   password: password
+
+customer-svc:
+url --> http://localhost:8989
+
+fraud-svc:
+url --> http://localhost:8990
+
+eureka-svc
+url --> http://localhost:8761

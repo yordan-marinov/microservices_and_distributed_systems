@@ -7,10 +7,11 @@
   <groupId>com.yordanm</groupId>
   <artifactId>yordanlearnservices</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0</version>
+  <version>1.0.0 </version>
   <modules>
     <module>customer-svc</module>
     <module>fraud-svc</module>
+    <module>eureka-svc</module>
   </modules>
 
   <name>yordanlearnservices</name>
