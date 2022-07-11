@@ -6,6 +6,8 @@ import com.yordanm.customer.model.Customer;
 import com.yordanm.customer.model.CustomerRegistrationRequest;
 import com.yordanm.customer.repository.CustomerRepository;
 import lombok.AllArgsConstructor;
+import com.yordanm.apiclientssvc.notification.NotificationClient;
+import com.yordanm.apiclientssvc.notification.NotificationRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -16,6 +18,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
+    private final NotificationClient notificationClient;
 
     public Customer register(CustomerRegistrationRequest customerRegistrationRequest) {
         Customer customer = Customer.builder()
@@ -41,6 +44,16 @@ public class CustomerService {
             throw new IllegalStateException(
                     String.format("%s %s is fraudster.", customer.getFirstName(), customer.getLastName()));
         }
+        NotificationRequest notificationRequest = new NotificationRequest(
+                customer.getId(),
+                customer.getEmail(),
+                String.format("Hi %s, welcome to ...",
+                        customer.getFirstName())
+        );
+
+        notificationClient.sendNotification(notificationRequest);
+
+
         return customer;
     }
 }
