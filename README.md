@@ -1,10 +1,11 @@
-This is used for learning purpses only.
+This is used for learning purposes only.
+
 Customer Service is connected to a postgresDB and pgAdmin.
-Connecting to pgAdmin:
-  url: http://localhost:5050/browser/
-  network: postgres
-  username: postgres
-  password: password
+
+All the services are run through Docker: docker-compose up
+
+pgAdmin:
+url: http://localhost:5050/browser/
 
 customer-svc:
 url --> http://localhost:8989
@@ -14,3 +15,6 @@ url --> http://localhost:8990
 
 eureka-svc
 url --> http://localhost:8761
+
+zipkin
+url --> http://localhost:9411
