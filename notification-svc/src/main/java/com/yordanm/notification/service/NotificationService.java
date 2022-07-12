@@ -16,6 +16,11 @@ public class NotificationService {
     private final NotificationRepository notificationRepository;
 
     public NotificationResponse send(NotificationRequest notificationRequest) {
+        saveClient(notificationRequest);
+        return new NotificationResponse("Mikey Mouse", notificationRequest.message());
+    }
+
+    private void saveClient(NotificationRequest notificationRequest) {
         notificationRepository.save(
                 Notification.builder()
                         .toCustomerId(notificationRequest.toCustomerId())
@@ -25,6 +30,5 @@ public class NotificationService {
                         .sentAt(LocalDateTime.now())
                         .build()
         );
-        return new NotificationResponse("Mikey Mouse", notificationRequest.message());
     }
 }
