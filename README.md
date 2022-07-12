@@ -19,5 +19,15 @@ url --> http://localhost:8761
 zipkin
 url --> http://localhost:9411
 
-api-gateway
-port: 8991
+notification-svc
+url --> http://localhost:8991
+
+api-gateway --> Load balancer "Entry pont url"
+url --> http://localhost:8992
+
+rabbitmq
+ports: 5672
+admin url --> http://localhost:15672
+default credentials are:
+    username: guest
+    password: guest
