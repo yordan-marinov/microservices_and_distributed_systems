@@ -16,6 +16,7 @@
       <module>com.yordanm.apiclientssvc.notification-svc</module>
       <module>notification-svc</module>
       <module>apigateway</module>
+    <module>amqp</module>
   </modules>
 
   <name>yordanlearnservices</name>
