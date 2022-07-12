@@ -14,6 +14,11 @@ public class FraudCheckService {
     private final FraudRepository fraudRepository;
 
     public boolean isFraudulentCustomer(Integer customerId) {
+        saveCustomer(customerId);
+        return false;
+    }
+
+    private void saveCustomer(Integer customerId) {
         fraudRepository.save(
                 FraudCheckHistory.builder()
                         .customerId(customerId)
@@ -21,6 +26,5 @@ public class FraudCheckService {
                         .createdAt(LocalDateTime.now())
                         .build()
         );
-        return false;
     }
 }
