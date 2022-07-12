@@ -18,3 +18,6 @@ url --> http://localhost:8761
 
 zipkin
 url --> http://localhost:9411
+
+api-gateway
+port: 8991

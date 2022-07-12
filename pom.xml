@@ -15,6 +15,7 @@
       <module>api-clients-svc</module>
       <module>com.yordanm.apiclientssvc.notification-svc</module>
       <module>notification-svc</module>
+      <module>apigateway</module>
   </modules>
 
   <name>yordanlearnservices</name>
