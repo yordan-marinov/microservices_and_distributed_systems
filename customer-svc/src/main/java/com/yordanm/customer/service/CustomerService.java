@@ -1,5 +1,6 @@
 package com.yordanm.customer.service;
 
+import com.yordanm.amqp.RabbitMQMessageProducer;
 import com.yordanm.apiclientssvc.fraud.FraudClient;
 import com.yordanm.apiclientssvc.fraud.FraudResponse;
 import com.yordanm.customer.model.Customer;
@@ -16,9 +17,13 @@ import org.springframework.web.client.RestTemplate;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final RestTemplate restTemplate;
     private final FraudClient fraudClient;
-    private final NotificationClient notificationClient;
+    private final RabbitMQMessageProducer rabbitMQMessageProducer;
+
+    // These are left as examples of different methods communications between the services
+    private final RestTemplate restTemplate;  // Used for the restTemplate on localhost
+    private final NotificationClient notificationClient;  // Used for openFeign interface client method
+
 
     public Customer register(CustomerRegistrationRequest customerRegistrationRequest) {
         Customer customer = Customer.builder()
@@ -29,7 +34,7 @@ public class CustomerService {
 
         customerRepository.saveAndFlush(customer);
 
-        // THIS IS WHEN IS WITHOUT USING OF OPENFEIGN
+        // This is as example of the different usage of the method of service communication
 //        FraudResponse response = restTemplate.getForObject(
 ////                "http://localhost:8990/api/v1/fraud-check/{customerId}", This way is when is done without the eureka client
 //                "http://FRAUD-SVC/api/v1/fraud-check/{customerId}", // Done with eureka client name instead of localhost:port
@@ -47,12 +52,16 @@ public class CustomerService {
         NotificationRequest notificationRequest = new NotificationRequest(
                 customer.getId(),
                 customer.getEmail(),
-                String.format("Hi %s, welcome to ...",
-                        customer.getFirstName())
+                String.format("Hi %s, welcome to our services ...", customer.getFirstName())
         );
 
-        notificationClient.sendNotification(notificationRequest);
+        // Using OpenFeign with api-client-svc notification client interface
+//        notificationClient.sendNotification(notificationRequest);
 
+        // Using RabbitMQ - example
+        rabbitMQMessageProducer.publish(notificationRequest,
+                "internal.exchange",
+                "internal.notification.routing-key");
 
         return customer;
     }
