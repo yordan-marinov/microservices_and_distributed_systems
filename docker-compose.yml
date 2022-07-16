@@ -74,6 +74,24 @@ services:
       - zipkin
       - eureka-svc
 
+  customer:
+    image: yordanmarinov/customer-svc
+    container_name: customer-svc
+    ports:
+      - "8989:8989"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - spring
+      - postgres
+    depends_on:
+      - eureka-svc
+      - apigateway
+      - zipkin
+      - postgres
+      - rabbitmq
+
+
 networks:
   postgres:
     driver: bridge
