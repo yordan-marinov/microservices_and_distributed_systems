@@ -1,0 +1,26 @@
+server:
+  port: 8992
+
+spring:
+  application:
+    name: api-gateway
+  zipkin:
+    base-url: http://zipkin:9411
+  cloud:
+    gateway:
+      routes:
+        - id: customer-svc
+          uri: lb://CUSTOMER-SVC
+          predicates:
+            - Path=/api/v1/customers
+#        - id: fraud-svc
+#          uri: lb://FRAUD-SVC
+#          predicates:
+#            - Path=/api/v1/fraud-check/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-svc:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
