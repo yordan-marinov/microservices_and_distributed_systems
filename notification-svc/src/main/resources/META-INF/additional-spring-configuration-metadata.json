@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "rabbitmq.exchanges.internal",
+      "type": "java.lang.String",
+      "description": "Description for rabbitmq.exchanges.internal."
+    },
+    {
+      "name": "rabbitmq.exchanges.internal",
+      "type": "java.lang.String",
+      "description": "Description for rabbitmq.exchanges.internal."
+    }
+  ] }
